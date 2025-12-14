@@ -132,12 +132,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
           ease: "back.out(1.7)"
       }, "-=0.5");
 
-    // 3. Navbar Reveal
+    // 3. Navbar Reveal - Reduced delay and matched timing with Loader finish
     gsap.from("#navbar", {
-        y: -100,
-        opacity: 0,
-        duration: 1,
-        delay: 2.5,
+        y: -50,
+        autoAlpha: 0, // handles opacity + visibility
+        duration: 0.8,
+        delay: 2.0, // Reduced from 2.5 to appear as loader finishes
         ease: "power2.out"
     });
 
@@ -179,13 +179,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     // Mouse Move Effect for 3D Feel on Hero
     const heroSection = document.getElementById('hero');
-    heroSection.addEventListener('mousemove', (e) => {
-        const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-        const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-        gsap.to('.premium-text', {
-            x: moveX * 2,
-            y: moveY * 2,
-            duration: 1
+    if (heroSection) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            gsap.to('.premium-text', {
+                x: moveX * 2,
+                y: moveY * 2,
+                duration: 1
+            });
         });
-    });
+    }
 });
