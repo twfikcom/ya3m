@@ -14,7 +14,10 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Tailwind CSS -->
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -43,70 +46,6 @@
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <style>
-        /* Custom Styles for Effects */
-        body {
-            background-color: #0f0f0f;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        .text-glow {
-            text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .clip-path-slant {
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        }
-
-        /* 3D Text Effect */
-        .premium-text {
-            color: #F59E0B;
-            text-shadow: 
-                1px 1px 0 #b45309,
-                2px 2px 0 #b45309,
-                3px 3px 0 #b45309,
-                4px 4px 0 #b45309,
-                5px 5px 0 #000;
-        }
-
-        /* Loader Styles */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #F59E0B; 
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #D97706; 
-        }
-    </style>
 </head>
 <body class="antialiased pb-24 md:pb-0">
 
@@ -122,15 +61,24 @@
             <div class="text-2xl font-bold text-white tracking-widest">
                 YA3M<span class="text-brand-gold">.COM</span>
             </div>
-            <a href="https://www.namecheap.com/domains/registration/results/?domain=ya3m.com" target="_blank" 
-               class="hidden md:block px-6 py-2 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition-colors rounded-full font-bold text-sm">
-                Available / متاح للبيع
-            </a>
+            
+            <div class="flex items-center gap-4">
+                <!-- Language Toggle -->
+                <button id="lang-toggle" class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-white text-sm font-bold transition-colors border border-white/10 backdrop-blur-sm">
+                    <i class="fas fa-globe"></i>
+                    <span id="lang-text">English</span>
+                </button>
+
+                <a href="https://www.namecheap.com/domains/registration/results/?domain=ya3m.com" target="_blank" 
+                   class="hidden md:block px-6 py-2 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition-colors rounded-full font-bold text-sm">
+                    <span data-i18n="nav_available">Available / متاح للبيع</span>
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-radial-gradient from-gray-900 to-black">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-radial-gradient from-gray-900 to-black" id="hero">
         <!-- Background Elements -->
         <div class="absolute inset-0 bg-hero-pattern opacity-10"></div>
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-gold rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse"></div>
@@ -139,7 +87,7 @@
         <div class="container mx-auto px-4 z-10 text-center relative">
             <div class="hero-anim opacity-0 translate-y-10">
                 <span class="inline-block py-1 px-3 rounded-full bg-brand-gold/10 text-brand-gold border border-brand-gold/30 text-sm font-bold mb-6">
-                    💎 Premium Domain - نطاق ذهبي
+                    <span data-i18n="hero_badge">💎 Premium Domain - نطاق ذهبي</span>
                 </span>
             </div>
             
@@ -147,11 +95,11 @@
                 Ya3m.com
             </h1>
             
-            <h2 class="hero-anim opacity-0 translate-y-10 text-3xl md:text-5xl font-bold text-white mb-6 leading-tight mt-4">
+            <h2 class="hero-anim opacity-0 translate-y-10 text-3xl md:text-5xl font-bold text-white mb-6 leading-tight mt-4" data-i18n="hero_title_sub">
                 الاسم اللي الكل يحفظه <span class="text-brand-gold">من أول مرة!</span>
             </h2>
             
-            <p class="hero-anim opacity-0 translate-y-10 text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p class="hero-anim opacity-0 translate-y-10 text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero_desc">
                 نطاق نادر (4 أحرف) يختصر المسافات ويسيطر على السوق الخليجي والعربي. 
                 <br>
                 <span class="text-sm opacity-70 block mt-2 font-light">Short, Catchy, Authority. The perfect brand for the MENA region.</span>
@@ -161,14 +109,15 @@
                 <a href="https://www.namecheap.com/domains/registration/results/?domain=ya3m.com" target="_blank"
                    class="group relative px-8 py-4 bg-gradient-to-r from-brand-gold to-brand-accent rounded-xl text-black font-black text-lg shadow-lg shadow-orange-500/30 hover:shadow-orange-500/60 transform hover:-translate-y-1 transition-all duration-300 w-full md:w-auto">
                     <span class="relative z-10 flex items-center justify-center gap-2">
-                        اشترِ النطاق الآن <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                        <span data-i18n="btn_buy">اشترِ النطاق الآن</span> 
+                        <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform rtl-icon"></i>
                     </span>
                     <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-xl transition-opacity"></div>
                 </a>
                 
                 <a href="https://wa.me/201010373331" target="_blank"
                    class="px-8 py-4 bg-gray-800 border border-gray-700 hover:border-green-500 hover:text-green-400 rounded-xl text-white font-bold text-lg transition-all duration-300 w-full md:w-auto flex items-center justify-center gap-2">
-                    <i class="fab fa-whatsapp text-xl"></i> تواصل واتساب
+                    <i class="fab fa-whatsapp text-xl"></i> <span data-i18n="btn_whatsapp">تواصل واتساب</span>
                 </a>
             </div>
         </div>
@@ -186,32 +135,32 @@
                 
                 <!-- Text Content -->
                 <div class="order-2 md:order-1 content-anim">
-                    <h3 class="text-brand-gold font-bold text-lg mb-2">لماذا "Ya3m"؟</h3>
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-snug">
+                    <h3 class="text-brand-gold font-bold text-lg mb-2" data-i18n="opp_title">لماذا "Ya3m"؟</h3>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-snug" data-i18n="opp_main">
                         أكثر من مجرد اسم... <br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-l from-brand-gold to-white">هذا برستيج!</span>
                     </h2>
-                    <p class="text-gray-300 text-lg leading-loose mb-6">
+                    <p class="text-gray-300 text-lg leading-loose mb-6" data-i18n="opp_desc">
                         كلمة <span class="text-white font-bold">"يا عم"</span> هي جزء من ثقافتنا اليومية. نستخدمها للود، للميانة، ولطلب الخدمة، وأحياناً للاحترام والسلطة.
                     </p>
                     <ul class="space-y-4">
                         <li class="flex items-center gap-4 text-gray-200">
-                            <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                            <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold shrink-0">
                                 <i class="fas fa-brain"></i>
                             </div>
-                            <span><strong class="text-white">سهل التذكر:</strong> 4 حروف فقط، يستحيل نسيانه.</span>
+                            <span data-i18n="reason_1"><strong class="text-white">سهل التذكر:</strong> 4 حروف فقط، يستحيل نسيانه.</span>
                         </li>
                         <li class="flex items-center gap-4 text-gray-200">
-                            <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                            <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold shrink-0">
                                 <i class="fas fa-globe"></i>
                             </div>
-                            <span><strong class="text-white">عالمي ومحلي:</strong> يكتب بالإنجليزية (Chat Language) ويفهمه الجميع.</span>
+                            <span data-i18n="reason_2"><strong class="text-white">عالمي ومحلي:</strong> يكتب بالإنجليزية (Chat Language) ويفهمه الجميع.</span>
                         </li>
                         <li class="flex items-center gap-4 text-gray-200">
-                            <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                            <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold shrink-0">
                                 <i class="fas fa-crown"></i>
                             </div>
-                            <span><strong class="text-white">Dot Com:</strong> الملكية الأقوى لأي شركة ناشئة جادة.</span>
+                            <span data-i18n="reason_3"><strong class="text-white">Dot Com:</strong> الملكية الأقوى لأي شركة ناشئة جادة.</span>
                         </li>
                     </ul>
                 </div>
@@ -242,8 +191,8 @@
     <section class="py-24 bg-neutral-900 relative">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 section-header-anim">
-                <h2 class="text-4xl font-bold text-white mb-4">تخيل مشروعك بهذا الاسم</h2>
-                <p class="text-gray-400 text-xl">الفرص لا حصر لها مع براند مرن وقوي</p>
+                <h2 class="text-4xl font-bold text-white mb-4" data-i18n="use_cases_title">تخيل مشروعك بهذا الاسم</h2>
+                <p class="text-gray-400 text-xl" data-i18n="use_cases_sub">الفرص لا حصر لها مع براند مرن وقوي</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -254,8 +203,8 @@
                         <i class="fas fa-motorcycle text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Ya3m Wassal</h3>
-                    <p class="text-sm text-gray-400">تطبيق توصيل طلبات</p>
-                    <p class="text-xs text-brand-gold mt-2">"يا عم وصّلني"</p>
+                    <p class="text-sm text-gray-400" data-i18n="uc_1_desc">تطبيق توصيل طلبات</p>
+                    <p class="text-xs text-brand-gold mt-2" data-i18n="uc_1_quote">"يا عم وصّلني"</p>
                 </div>
 
                 <!-- Card 2 -->
@@ -264,8 +213,8 @@
                         <i class="fas fa-hamburger text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Ya3m Burger</h3>
-                    <p class="text-sm text-gray-400">سلسلة مطاعم وجبات سريعة</p>
-                    <p class="text-xs text-brand-gold mt-2">"أكلك عندنا يا عم"</p>
+                    <p class="text-sm text-gray-400" data-i18n="uc_2_desc">سلسلة مطاعم وجبات سريعة</p>
+                    <p class="text-xs text-brand-gold mt-2" data-i18n="uc_2_quote">"أكلك عندنا يا عم"</p>
                 </div>
 
                 <!-- Card 3 -->
@@ -274,8 +223,8 @@
                         <i class="fas fa-bullhorn text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Ya3m Marketing</h3>
-                    <p class="text-sm text-gray-400">وكالة تسويق وإبداع</p>
-                    <p class="text-xs text-brand-gold mt-2">"ظبطنا يا عم"</p>
+                    <p class="text-sm text-gray-400" data-i18n="uc_3_desc">وكالة تسويق وإبداع</p>
+                    <p class="text-xs text-brand-gold mt-2" data-i18n="uc_3_quote">"ظبطنا يا عم"</p>
                 </div>
 
                 <!-- Card 4 -->
@@ -284,8 +233,8 @@
                         <i class="fas fa-hands-helping text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Ya3m Services</h3>
-                    <p class="text-sm text-gray-400">منصة خدمات عامة</p>
-                    <p class="text-xs text-brand-gold mt-2">"خلص أمورك يا عم"</p>
+                    <p class="text-sm text-gray-400" data-i18n="uc_4_desc">منصة خدمات عامة</p>
+                    <p class="text-xs text-brand-gold mt-2" data-i18n="uc_4_quote">"خلص أمورك يا عم"</p>
                 </div>
 
             </div>
@@ -298,10 +247,10 @@
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-4xl mx-auto glass-card p-10 rounded-3xl border border-brand-gold/30 text-center">
                 <div class="inline-block p-3 rounded-full bg-red-500/20 text-red-500 mb-4 animate-pulse">
-                    <i class="fas fa-fire mr-2"></i> فرصة نادرة
+                    <i class="fas fa-fire mr-2"></i> <span data-i18n="val_badge">فرصة نادرة</span>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">قيمة النطاقات القصيرة تتضاعف</h2>
-                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" data-i18n="val_title">قيمة النطاقات القصيرة تتضاعف</h2>
+                <p class="text-lg text-gray-300 mb-8 leading-relaxed" data-i18n="val_desc">
                     النطاقات المكونة من 4 أحرف (LLLM.com) أصبحت عملة رقمية نادرة. امتلاك <strong>Ya3m.com</strong> ليس مجرد شراء اسم، بل هو استثمار في أصل رقمي يرتفع سعره سنوياً.
                     <br>
                     <span class="text-brand-gold font-bold">لا تفوت الفرصة قبل أن يسبقك منافسك.</span>
@@ -310,15 +259,15 @@
                 <div class="flex flex-col md:flex-row gap-6 justify-center">
                     <div class="bg-black/50 p-6 rounded-xl flex-1 border border-gray-700">
                         <div class="text-3xl font-bold text-white mb-1">4 Letters</div>
-                        <div class="text-gray-500 text-sm">Short & Rare</div>
+                        <div class="text-gray-500 text-sm" data-i18n="stat_1">Short & Rare</div>
                     </div>
                     <div class="bg-black/50 p-6 rounded-xl flex-1 border border-gray-700">
                         <div class="text-3xl font-bold text-white mb-1">.COM</div>
-                        <div class="text-gray-500 text-sm">King of TLDs</div>
+                        <div class="text-gray-500 text-sm" data-i18n="stat_2">King of TLDs</div>
                     </div>
                     <div class="bg-black/50 p-6 rounded-xl flex-1 border border-gray-700">
                         <div class="text-3xl font-bold text-white mb-1">MENA</div>
-                        <div class="text-gray-500 text-sm">Targeted Market</div>
+                        <div class="text-gray-500 text-sm" data-i18n="stat_3">Targeted Market</div>
                     </div>
                 </div>
             </div>
@@ -329,7 +278,7 @@
     <footer class="bg-black py-12 border-t border-gray-800">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-black text-white mb-4 tracking-widest">YA3M<span class="text-brand-gold">.COM</span></h2>
-            <p class="text-gray-500 mb-8">Premium Domain Name For Sale. Secure transaction via Namecheap.</p>
+            <p class="text-gray-500 mb-8" data-i18n="footer_desc">Premium Domain Name For Sale. Secure transaction via Namecheap.</p>
             <div class="flex justify-center gap-6 text-2xl text-gray-400">
                 <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-instagram"></i></a>
@@ -344,7 +293,7 @@
     <!-- Sticky Bottom CTA (Mobile Optimized) -->
     <div id="sticky-cta" class="fixed bottom-0 left-0 w-full bg-black/90 backdrop-blur-md border-t border-brand-gold/30 p-4 z-40 transform translate-y-full transition-transform duration-500">
         <div class="container mx-auto flex justify-between items-center gap-4">
-            <div class="hidden md:block text-white font-bold text-lg">
+            <div class="hidden md:block text-white font-bold text-lg" data-i18n="sticky_text">
                 احصل على Ya3m.com اليوم!
             </div>
             <div class="flex gap-2 w-full md:w-auto">
@@ -352,91 +301,13 @@
                     <i class="fab fa-whatsapp"></i>
                 </a>
                 <a href="https://www.namecheap.com/domains/registration/results/?domain=ya3m.com" target="_blank" class="flex-grow px-6 py-3 bg-brand-gold text-black rounded-lg font-bold text-center hover:bg-yellow-400 transition-colors shadow-[0_0_15px_rgba(245,158,11,0.4)] animate-pulse-slow">
-                    اشترِ النطاق الآن (Buy Now)
+                    <span data-i18n="sticky_buy">اشترِ النطاق الآن (Buy Now)</span>
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- GSAP Logic -->
-    <script>
-        document.addEventListener("DOMContentLoaded", (event) => {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // 1. Loading Sequence
-            const tl = gsap.timeline();
-
-            tl.to("#loader-text", { opacity: 1, duration: 0.8, ease: "power2.out" })
-              .to("#loader-bar", { width: "200px", duration: 0.8, ease: "power2.inOut" })
-              .to("#loader-bar", { width: "100%", height: "100%", top: 0, left: 0, opacity: 0, duration: 0.5, ease: "power4.inOut" }, "+=0.2")
-              .to("#loader", { y: "-100%", duration: 0.8, ease: "power4.inOut" }, "-=0.3")
-              
-            // 2. Hero Animation (Staggered Entrance)
-              .to(".hero-anim", {
-                  y: 0,
-                  opacity: 1,
-                  duration: 1,
-                  stagger: 0.15,
-                  ease: "back.out(1.7)"
-              }, "-=0.5");
-
-            // 3. Navbar Reveal
-            gsap.from("#navbar", {
-                y: -100,
-                opacity: 0,
-                duration: 1,
-                delay: 2.5,
-                ease: "power2.out"
-            });
-
-            // 4. Content Scroll Animations
-            gsap.from(".content-anim", {
-                scrollTrigger: {
-                    trigger: ".content-anim",
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.2,
-                ease: "power2.out"
-            });
-
-            // 5. Cards Stagger
-            gsap.from(".use-case-card", {
-                scrollTrigger: {
-                    trigger: ".use-case-card",
-                    start: "top 85%",
-                },
-                y: 100,
-                opacity: 0,
-                scale: 0.9,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: "back.out(1.2)"
-            });
-
-            // 6. Sticky CTA Reveal logic
-            ScrollTrigger.create({
-                trigger: "#hero",
-                start: "bottom center",
-                onEnter: () => gsap.to("#sticky-cta", { y: 0, duration: 0.4 }),
-                onLeaveBack: () => gsap.to("#sticky-cta", { y: "100%", duration: 0.4 })
-            });
-
-            // Mouse Move Effect for 3D Feel on Hero
-            const heroSection = document.querySelector('section');
-            heroSection.addEventListener('mousemove', (e) => {
-                const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-                const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-                gsap.to('.premium-text', {
-                    x: moveX * 2,
-                    y: moveY * 2,
-                    duration: 1
-                });
-            });
-        });
-    </script>
+    <!-- Main Logic Script -->
+    <script src="script.js" defer></script>
 </body>
 </html>

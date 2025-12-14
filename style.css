@@ -1,0 +1,69 @@
+/* Custom Styles for Effects */
+body {
+    background-color: #0f0f0f;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.text-glow {
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.clip-path-slant {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+/* 3D Text Effect */
+.premium-text {
+    color: #F59E0B;
+    text-shadow: 
+        1px 1px 0 #b45309,
+        2px 2px 0 #b45309,
+        3px 3px 0 #b45309,
+        4px 4px 0 #b45309,
+        5px 5px 0 #000;
+}
+
+/* Loader Styles */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #1a1a1a; 
+}
+::-webkit-scrollbar-thumb {
+    background: #F59E0B; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #D97706; 
+}
+
+/* RTL/LTR specific utility for icons */
+html[dir="ltr"] .rtl-icon {
+    transform: rotate(180deg);
+}
+html[dir="ltr"] .group:hover .rtl-icon {
+    transform: rotate(180deg) translateX(4px); /* Inverse hover effect */
+}
